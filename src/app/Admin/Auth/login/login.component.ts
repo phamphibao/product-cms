@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Restangular } from 'ngx-restangular';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
   public form: any;
   public login: any = {};
-  constructor() { }
+  constructor(
+    private api: Restangular,
+    ) { }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -18,4 +21,10 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  onSubmit(){
+    this.api.all('admin/login').customPOST(this.login).subscribe(sub => {
+      console.log(sub.result.original);
+    });
+    
+  }
 }

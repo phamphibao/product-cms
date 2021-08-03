@@ -8,8 +8,8 @@ import { SidebarComponent } from './Admin/Layout/sidebar/sidebar.component';
 import { FooterComponent } from './Admin/Layout/footer/footer.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './Admin/Auth/login/login.component';
-import { ReactiveFormsModule } from '@angular/forms';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { resful } from './Services/api.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,8 +21,10 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    resful
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -4,6 +4,7 @@ import { LoginComponent } from './Admin/Auth/login/login.component';
 import { LayoutComponent } from './Admin/Layout/layout/layout.component';
 
 const routes: Routes = [
+  { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
   { path: 'admin', component: LayoutComponent }
 ];
