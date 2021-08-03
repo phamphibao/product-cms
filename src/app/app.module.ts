@@ -10,6 +10,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './Admin/Auth/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { resful } from './Services/api.service';
+import { CookieService } from 'ngx-cookie-service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +28,7 @@ import { resful } from './Services/api.service';
     AppRoutingModule,
     resful
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

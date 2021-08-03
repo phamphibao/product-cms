@@ -5,6 +5,9 @@
       </div>
       <div class="form-login">
           <form action="" [formGroup]="form">
+              <div class="alert alert-danger text-center" *ngIf="error">
+                  Tài khoản hoặc mật khẩu không đúng
+              </div>
               <div class="form-group from-gr">
                   <span class="span-input"><i class="far fa-user"></i></span>
                   <input type="text" name="email" formControlName="email" [(ngModel)]="login.email"

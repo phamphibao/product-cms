@@ -1,5 +1,5 @@
+
 $(document).ready(function () {
-   
     $('.input-control').focus(function (e) {
         let span = $(this).parents('.from-gr').find('.span-input');
         $(span).addClass('active');

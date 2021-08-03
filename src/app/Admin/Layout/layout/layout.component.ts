@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-layout',
@@ -6,8 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./layout.component.css']
 })
 export class LayoutComponent implements OnInit {
-
-  constructor() { }
+  public cookie = null;
+  constructor(private cookieService: CookieService,
+              private router: Router
+              ) { 
+    this.cookie = this.cookieService.get('token-x') ? this.cookieService.get('token-x') : null ;
+    console.log(this.cookie);
+      if (this.cookie == null) {
+        this.router.navigate(['/login']);
+      }
+  }
 
   ngOnInit() {
   }

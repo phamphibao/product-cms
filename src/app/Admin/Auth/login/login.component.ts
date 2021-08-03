@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { Restangular } from 'ngx-restangular';
 
 @Component({
@@ -10,8 +12,11 @@ import { Restangular } from 'ngx-restangular';
 export class LoginComponent implements OnInit {
   public form: any;
   public login: any = {};
+  public error = false;
   constructor(
     private api: Restangular,
+    private cookieService: CookieService,
+    private router: Router
     ) { }
 
   ngOnInit() {
@@ -23,8 +28,13 @@ export class LoginComponent implements OnInit {
 
   onSubmit(){
     this.api.all('admin/login').customPOST(this.login).subscribe(sub => {
-      console.log(sub.result.original);
+        if (sub.result.original.error) {
+            this.error = true;
+        } else {
+            this.cookieService.set( 'token-x',sub.result.original.token,0.0060,"/",null,true,"None");
+            this.router.navigate(['/admin']);
+        }
     });
-    
+
   }
 }
