@@ -1,3 +1,13 @@
 {
-    "DEMO": "Thử nghiệm"
+    "DASHBOARD": "Bảng điều khiển",
+    "SIDEBAR": {
+        "BRAND": "Thương hiệu"
+    },
+    "TABLE" : {
+        "NAME": "Tên",
+        "PHONE": "Số điện thoại",
+        "IMAGE": "Ảnh",
+        "ADDRESS": "Địa chỉ"
+    },
+    "ADD" : "Thêm"
 }

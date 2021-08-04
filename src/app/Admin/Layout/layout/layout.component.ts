@@ -13,7 +13,6 @@ export class LayoutComponent implements OnInit {
               private router: Router
               ) { 
     this.cookie = this.cookieService.get('token-x') ? this.cookieService.get('token-x') : null ;
-    console.log(this.cookie);
       if (this.cookie == null) {
         this.router.navigate(['/login']);
       }

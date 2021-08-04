@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
@@ -7,15 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   public language;
-  constructor() { }
+  constructor(private translate: TranslateService) { 
+
+  }
 
   ngOnInit() {
-    this.language = localStorage.getItem('lang') || 'vn';
+    this.language = localStorage.getItem('lang') || 'en';
+    this.translate.setDefaultLang(this.language);
+    
   }
 
   changeLanguage(language){
     localStorage.setItem('lang',language);
-    // window.location.reload();
-    
+    this.translate.use(language);
   }
 }

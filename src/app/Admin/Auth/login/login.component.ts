@@ -13,25 +13,31 @@ export class LoginComponent implements OnInit {
   public form: any;
   public login: any = {};
   public error = false;
+  public cookie: any;
   constructor(
     private api: Restangular,
     private cookieService: CookieService,
     private router: Router
-    ) { }
+    ) { 
+      	this.cookie = this.cookieService.get('token-x');
+    }
 
   ngOnInit() {
-    this.form = new FormGroup({
-      email: new FormControl(this.login.email,[Validators.required]),
-      password: new FormControl(this.login.password,[Validators.required])
-    });
+	  	if(this.cookie){
+			  this.router.navigate(['admin']);
+		  }
+		this.form = new FormGroup({
+		email: new FormControl(this.login.email,[Validators.required]),
+		password: new FormControl(this.login.password,[Validators.required])
+		});
   }
 
   onSubmit(){
-    this.api.all('admin/login').customPOST(this.login).subscribe(sub => {
+    this.api.all('login').customPOST(this.login).subscribe(sub => {
         if (sub.result.original.error) {
             this.error = true;
         } else {
-            this.cookieService.set( 'token-x',sub.result.original.token,10,"/",null,true,"None");
+            this.cookieService.set( 'token-x',sub.result.original.token,1,"/",null,true,"None");
             this.router.navigate(['/admin']);
         }
     });

@@ -1,1 +1,30 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~@swimlane/ngx-datatable/release/index.css';
+@import '~@swimlane/ngx-datatable/release/themes/material.css';
+@import '~@swimlane/ngx-datatable/release/assets/icons.css';
+
+ngx-datatable.material { 
+    height: 70vh;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.datatable-row-center.datatable-row-group{
+    border-bottom: 1px solid rgba(0,0,0,.12) ;
+}
+mat-card.card-common.mat-card{
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 5px 5px -3px rgb(0 0 0 / 20%), 0 8px 10px 1px rgb(0 0 0 / 14%), 0 3px 14px 2px rgb(0 0 0 / 12%);
+}
+
+.title{
+    margin-bottom: 25px;
+}
+
+.mat-form-field-infix{
+    border-bottom: 1px solid rgba(0,0,0,.12) ;
+}
+.mat-form-field{
+    width: 100%;
+}
+

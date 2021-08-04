@@ -1,3 +1,13 @@
 {
-    "DEMO": "demo"
+    "DASHBOARD": "Dashboard",
+    "SIDEBAR": {
+        "BRAND": "Brand"
+    },
+    "TABLE" : {
+        "NAME": "Name",
+        "PHONE": "Phone",
+        "IMAGE": "Image",
+        "ADDRESS": "Address"
+    },
+    "ADD" : "Add"
 }
