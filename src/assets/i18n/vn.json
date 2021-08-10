@@ -7,7 +7,10 @@
         "NAME": "Tên",
         "PHONE": "Số điện thoại",
         "IMAGE": "Ảnh",
-        "ADDRESS": "Địa chỉ"
+        "ADDRESS": "Địa chỉ",
+        "IMAGE_COVER": "Ảnh bìa"
     },
-    "ADD" : "Thêm"
+    "ADD" : "Thêm",
+    "LOGOUT": "Đăng xuất"
+
 }

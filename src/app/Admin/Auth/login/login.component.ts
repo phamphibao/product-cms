@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
         if (sub.result.original.error) {
             this.error = true;
         } else {
-            this.cookieService.set( 'token-x',sub.result.original.token,1,"/",null,true,"None");
+            this.cookieService.set( 'token-x',sub.result.original.token,1,"admin",null,true,"None");
             this.router.navigate(['/admin']);
         }
     });

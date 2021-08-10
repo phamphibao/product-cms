@@ -17,21 +17,15 @@ import { HttpClient } from '@angular/common/http';
 import { BrandComponent } from './Admin/brand/brand.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { MaterialModule } from './material/material.module';
+import { ModalModule } from 'ngx-bootstrap';
+import { BrandDialogComponent } from './Admin/brand-dialog/brand-dialog.component';
+
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LayoutComponent,
-    HeaderComponent,
-    SidebarComponent,
-    FooterComponent,
-    LoginComponent,
-    BrandComponent
-  ],
   imports: [
     NgxDatatableModule,
     BrowserModule,
@@ -46,8 +40,21 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       }}
     ),
-    MaterialModule
+    MaterialModule,
+    ModalModule.forRoot(),
+    ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'})
   ],
+  declarations: [
+    AppComponent,
+    LayoutComponent,
+    HeaderComponent,
+    SidebarComponent,
+    FooterComponent,
+    LoginComponent,
+    BrandComponent,
+    BrandDialogComponent
+  ],
+  entryComponents: [ BrandDialogComponent ],
   providers: [CookieService],
   bootstrap: [AppComponent]
 })

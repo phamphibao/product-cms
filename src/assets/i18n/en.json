@@ -7,7 +7,9 @@
         "NAME": "Name",
         "PHONE": "Phone",
         "IMAGE": "Image",
-        "ADDRESS": "Address"
+        "ADDRESS": "Address",
+        "IMAGE_COVER": "Image cover"
     },
-    "ADD" : "Add"
+    "ADD" : "Add",
+    "LOGOUT": "Logout"
 }
