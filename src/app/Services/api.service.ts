@@ -5,10 +5,7 @@ import { environment } from "src/environments/environment";
 // Function for setting the default restangular configuration
 
 export function RestangularConfigFactory (RestangularProvider,cookieService) {
-  let token = cookieService.get('token-x');
-  
   const headers = {
-    'Authorization': 'Bearer ' + token,
     'Content-Type': 'application/json',
     'Accept': 'application/json',
     'X-Requested-With': 'XMLHttpRequest',
@@ -18,6 +15,13 @@ export function RestangularConfigFactory (RestangularProvider,cookieService) {
   };
   RestangularProvider.setBaseUrl(environment.apiUrl);
   RestangularProvider.setDefaultHeaders(headers);
+  RestangularProvider.addFullRequestInterceptor((element, operation, path, url, headers, params) => {
+    let bearerToken = cookieService.get('token-x');
+      
+    return {
+      headers: Object.assign({}, headers, {Authorization: `Bearer ${bearerToken}`})
+    };
+  });
 }
 
 // Importing RestangularModule and making default configs for restanglar

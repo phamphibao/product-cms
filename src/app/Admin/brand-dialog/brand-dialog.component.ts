@@ -1,11 +1,10 @@
-import { ElementRef } from '@angular/core';
-import { ViewChild } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap';
 import { Restangular } from 'ngx-restangular';
+import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
-
+import { environment } from 'src/environments/environment';
 
 @Component({
 	selector: 'app-brand-dialog',
@@ -24,30 +23,50 @@ export class BrandDialogComponent implements OnInit {
 	public cover_image_upload: any;
 	public uploading: true;
 	public onClose: Subject<boolean>;
+	public env = environment;
 	constructor(public bsModalRef: BsModalRef,
-		private api: Restangular) { }
+		private api: Restangular,
+		private toastrService: ToastrService,
+		) { }
 
 	ngOnInit() {
+		console.log(this.brand);
 		this.onClose = new Subject();
 		this.form = new FormGroup({
 			name: new FormControl(this.brand.name, [Validators.required]),
 			phone: new FormControl(this.brand.phone, []),
 			address: new FormControl(this.brand.address, []),
 		});
+		this.logo_image = this.brand.logo != null ? this.env.urlfile  + this.brand.logo : null;
+		this.cover_image = this.brand.cover_image != null ?  this.env.urlfile  +  this.brand.cover_image	 : null;
 	}
 
 	onSubmit() {
-		this.brand.logo = this.logo_image_upload;
-		this.brand.cover_image = this.cover_image_upload;
-		
-		this.api.all('brands').customPOST(this.brand).subscribe(sub => {
-			console.log(sub);
-			if(sub.result){
-				this.bsModalRef.hide();
-				this.onClose.next(true);
-			}
-		});
+		if(this.logo_image_upload != null){
+			this.brand.logo = this.logo_image_upload;
+		}
+		if(this.cover_image_upload){
+			this.brand.cover_image = this.cover_image_upload;
+		}
 
+		if(this.brand.id){
+			this.api.one('brands',this.brand.id).customPUT(this.brand).subscribe(sub => {
+				console.log(sub);
+				if(sub.result){
+					this.bsModalRef.hide();
+					this.onClose.next(true);
+					this.toastrService.success('update success!')
+				}
+			});
+		}else{
+			this.api.all('brands').customPOST(this.brand).subscribe(sub => {
+				if(sub.result){
+					this.bsModalRef.hide();
+					this.onClose.next(true);
+					this.toastrService.success('add success!')
+				}
+			});
+		}
 	}
 
 	onChangeInput(param, input) {

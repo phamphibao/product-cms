@@ -19,6 +19,9 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { MaterialModule } from './material/material.module';
 import { ModalModule } from 'ngx-bootstrap';
 import { BrandDialogComponent } from './Admin/brand-dialog/brand-dialog.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import {MatMenuModule} from '@angular/material/menu';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -42,7 +45,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     ),
     MaterialModule,
     ModalModule.forRoot(),
-    ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'})
+    ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
   declarations: [
     AppComponent,

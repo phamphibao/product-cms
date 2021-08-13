@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ColumnMode } from '@swimlane/ngx-datatable';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { Restangular } from 'ngx-restangular';
+import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
 import { BrandDialogComponent } from '../brand-dialog/brand-dialog.component';
 
@@ -26,7 +27,8 @@ export class BrandComponent implements OnInit {
   public count;
   env: string;
   constructor(private api: Restangular,
-    private modalService: BsModalService) { }
+    private modalService: BsModalService,
+    private toastrService: ToastrService) { }
 
   ngOnInit() {
     this.getBrands();
@@ -61,7 +63,44 @@ export class BrandComponent implements OnInit {
   })
     
   }
+  onSearch(){
+    this.getBrands();
+  }
+  onReset(){  
+    this.filter = {
+        name:'',
+        phone :'',
+        address : '',
+        column :'name',
+        sort :'desc'
+    };
+	this.getBrands();
+  }
   setPage(){
+  }
 
+  onEdit(params){
+    const initialState = {
+      title:  "EDIT",
+      brand: params
+  };
+    this.bsModalRef = this.modalService.show(BrandDialogComponent, {initialState});
+    this.bsModalRef.content.closeBtnName = 'Close';
+    this.bsModalRef.content.actionBtnName = 'Update';
+    this.bsModalRef.content.onClose.subscribe(result => {
+        console.log('results', result);
+        if(result){
+          this.getBrands();
+        }
+    })
+  }
+
+  onDelete(row){
+    this.api.one('brands',row.id).customDELETE().subscribe(sub => {
+      if(sub.result){
+        this.toastrService.success('Delete success!');
+        this.getBrands();
+      }
+    });
   }
 }
