@@ -22,6 +22,8 @@ import { BrandDialogComponent } from './Admin/brand-dialog/brand-dialog.componen
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import {MatMenuModule} from '@angular/material/menu';
+import { CategoryComponent } from './admin/category/category.component';
+import { CategoryDialogComponent } from './admin/category-dialog/category-dialog.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -57,9 +59,14 @@ export function HttpLoaderFactory(http: HttpClient) {
     FooterComponent,
     LoginComponent,
     BrandComponent,
-    BrandDialogComponent
+    BrandDialogComponent,
+    CategoryComponent,
+    CategoryDialogComponent
   ],
-  entryComponents: [ BrandDialogComponent ],
+  entryComponents: [ 
+    BrandDialogComponent,
+    CategoryDialogComponent 
+  ],
   providers: [CookieService],
   bootstrap: [AppComponent]
 })

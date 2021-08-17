@@ -1,0 +1,23 @@
+<div class="modal-header">
+	<h4 class="modal-title pull-left">{{title}}</h4>
+	<button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+		<span aria-hidden="true">&times;</span>
+	</button>
+</div>
+<div class="modal-body">
+		<form  [formGroup]="form">
+			<mat-form-field class="example-full-width" appearance="fill">
+				<mat-label>{{ 'SIDEBAR.CATEGORY' | translate }}</mat-label>
+				<input type="text" matInput formControlName="name" [(ngModel)]="category.name" placeholder="Ex. Abc">
+				<div *ngIf="form.get('name').invalid && (form.get('name').dirty || form.get('name').touched)">
+					<div *ngIf="form.get('name').hasError('required')" class="text-danger">
+					  {{ "VALIDATOR.REQUIRED" | translate }}
+					</div>
+				</div>
+			  </mat-form-field>
+		</form>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-danger" (click)="bsModalRef.hide()">{{closeBtnName}}</button>
+	<button type="button" class="btn btn-primary" (click)="onSubmit()"  [disabled]="!form.valid">{{actionBtnName}}</button>
+</div>

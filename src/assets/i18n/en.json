@@ -1,7 +1,8 @@
 {
     "DASHBOARD": "Dashboard",
     "SIDEBAR": {
-        "BRAND": "Brand"
+        "BRAND": "Brand",
+        "CATEGORY": "Category"
     },
     "TABLE" : {
         "NAME": "Name",
@@ -11,5 +12,8 @@
         "IMAGE_COVER": "Image cover"
     },
     "ADD" : "Add",
-    "LOGOUT": "Logout"
+    "LOGOUT": "Logout",
+    "VALIDATOR": {
+        "REQUIRED" : "Can not be empty!!"
+    }
 }

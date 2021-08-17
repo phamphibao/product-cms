@@ -1,0 +1,60 @@
+<div class="row">
+	<div class="title ml-2">Brands</div>
+</div>
+<mat-card class="card-common mb-2">
+	<div class="row">
+		<div class="col-1 float-right ml-auto">
+			<button mat-raised-button color="primary" type="button" class="btn-primary" (click)="openModalAddBrand()">
+				{{ "ADD" | translate }}
+			</button>
+		</div>
+	</div>
+</mat-card>
+
+<mat-card class="card-common">
+	<div class="row">
+		<div class="col-3">
+			<mat-form-field class="" appearance="fill">
+				<label for="">{{ "TABLE.NAME" | translate }}</label>
+				<input matInput type="text" [(ngModel)]="filter.name"/>
+			</mat-form-field>
+		</div>
+
+		<div class="col-2 d-flex justify-content-center align-items-center">
+			<button mat-raised-button color="primary" class="btn-primary" (click)="onSearch()">
+				Search
+			</button>
+			<button mat-raised-button color="primary" class="btn-primary ml-2" (click)="onReset()">
+				Reset
+			</button>
+		</div>
+	</div>
+</mat-card>
+
+<div class="row">
+	<div class="col-12">
+		<ngx-datatable class="material" [rows]="categories" [columnMode]="ColumnMode.force" [headerHeight]="50"
+			[footerHeight]="100" [rowHeight]="50" [limit]="10" >
+
+			<ngx-datatable-column name="{{ 'TABLE.NAME' | translate }}" [width]="100" prop="name">
+			</ngx-datatable-column>
+			<ngx-datatable-column name="Option" prop="option" [width]="250">
+				<ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+					<button mat-icon-button [matMenuTriggerFor]="menu">
+						<mat-icon>more_vert</mat-icon>
+					  </button>
+					  <mat-menu #menu="matMenu">
+						<button mat-menu-item (click)="onEdit(row)">
+							<mat-icon>edit</mat-icon>
+						  	<span>Edit</span>
+						</button>
+						<button mat-menu-item (click)="onDelete(row)">
+							<mat-icon>delete_sweep</mat-icon>
+						  <span>Delete</span>
+						</button>
+					  </mat-menu>
+				</ng-template>
+			</ngx-datatable-column>
+		</ngx-datatable>
+	</div>
+</div>

@@ -30,7 +30,6 @@ export class BrandDialogComponent implements OnInit {
 		) { }
 
 	ngOnInit() {
-		console.log(this.brand);
 		this.onClose = new Subject();
 		this.form = new FormGroup({
 			name: new FormControl(this.brand.name, [Validators.required]),
